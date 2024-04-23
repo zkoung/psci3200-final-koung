@@ -9,7 +9,7 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - "PSCI 3200 Final Project Research.qmd"
+      - PSCI 3200 Final Project Research.qmd
 
 format:
   html:
