@@ -2,10 +2,7 @@
 title: "psci3200-final-koung"
 ---
 
-This is a Quarto website.
+Please use the menu to select "PSCI 3200 Final Project." 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1 + 1 
-```
+Thanks for a great semester,
+Zach 

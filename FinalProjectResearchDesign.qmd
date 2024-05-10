@@ -14,12 +14,15 @@ bibliography: /Users/zachkoung/Documents/GitHub/psci3200-final-koung/PSCI3200.bi
 #| output: false
 #| include: false 
 
+# A note on AI I used GPT4 many times throughout this assignment. Noteably in helping me code in time saving measures (instead of calculating the percent change by hand for 12+ variables and over 9 times each) I got it to give me the code to do it automatically. Moreover, especially with the chaos that is pivoting I used it to help me ID rows using str type commands. I also used GPT4 to help with editing, debugging, trying to use python instead (did not go with in the end), as well as some editing/rephrasing and reworking of my explanations and responses. Moreover, I used it to help brainstorm some potential confounders (was okay at doing it) and then also used it to help brainstorm remedies (was meh at it). I also used chat gpt to assign countries into regions using the specific naming I had so I wouldnt have to a lot more cleaning then I verified the regions to make sure it made sense. Also used it to draft the findings analysis (meh) and then spent time over it manually. 
+
 #bibliography: ./Users/zachkoung/Documents/GitHub/psci3200-final-koung/PSCI3200.bib
 
 library(tidyverse)
 library(dplyr)
 library(gt)
 library(knitr)
+library(modelsummary)
 
 tour_dat_import <- read_csv("/Users/zachkoung/Library/Mobile Documents/com~apple~CloudDocs/PENN SPRING 24/GLOBAL CONFLICT/API_ST/API_ST.INT.ARVL_DS2_en_csv_v2_84029.csv", 
                      #row 4 is headers
@@ -609,7 +612,7 @@ xx
 
 ## Research Design 
 
-In this section, I will cover the research design of this project. First I will cover some background on the two data sources I am using, as well as discuss some limitations to the data and how I moved forward. Secondly, I will discuss each of the key variables I am using from these datasets, and how they tie into my hypothesis as well as include a few vizualtions to help contenxtualize the some of these variables. Then, I will specify and defend my main regression model to test the hypothesis. I'll also discuss some potential covariates, unobserved cofounders, and other casual concerns that could effect the interpretability of the model. In addition to the limitations of the model, I will offer two different empirical extensions that could help further test the model: a region \* idependent variable interaction term and adding a time lag of one year between the independent and dependent variables.
+In this section, I will cover the research design of this project. First I will cover some background on the two data sources I am using, as well as discuss some limitations to the data and how I moved forward. Secondly, I will discuss each of the key variables I am using from these datasets, and how they tie into my hypothesis as well as include a few vizualtions to help contenxtualize the some of these variables. Then, I will specify and defend my main regression model to test the hypothesis. I'll also discuss some potential covariates, unobserved cofounders, and other casual concerns that could effect the interpretability of the model. In addition to the limitations of the model, I will offer three different empirical extensions that could help further test the model: a region \* idependent variable interaction term, adding a time lag of one year between the independent and dependent variables, and creating a new index measure.
 
 #### **Data Sources**
 
@@ -620,6 +623,8 @@ The second datset is the from the Spartacus Gay Travel Guide which publishes yea
 Moreover, while the data was relatively complete, I did narrow down the years I would work with. I decided to not use any data starting from January 1, 2020, to remove the issue with COVID-related travel dilemmas. Because the Gay Travel Guide only begins in 2012, the final window is for 2012-2019 and for all countries that existed in both the Gay Travel Guide and the World Bank Travel Data.
 
 #### **Discussion of key variables**
+
+Note that for all of the variables below I have modified them so that it represents the difference from one year to the next for the purpose of the regressions and model.
 
 [Dependent Variable]{.underline}
 
@@ -667,7 +672,7 @@ Moreover, while the data was relatively complete, I did narrow down the years I 
 
 These variables and data sources are the most ideal at assesing my hypothesis. The dependent variable, tourism, is accurately measured by the number of arrivals. I chose this over other variables such as dollars spent per visit, avergae length of visit, size of the tourist economy, or others that did not directly asses the movement of people. Because I hypothesize that people change their tourism plans as a result of LGBT friendliness, using number of people as my unit of analysis is the most apt. Secondly, the independent variables, LGBT friendliness, are also apt at supporting my hypothesis. These variables, including the total score accruately measure LGBT conditions in a given country and connect neatly to my hypothesis.
 
-#### Visualizations and Contextualization of Variables 
+#### **Visualizations and Contextualization of Variables** 
 
 Because I am taking the difference in both my independent variables, LGBT measures, as well as my dependent variables, **below is a table showcasing some statistics on dependent variables after they have modified to show the change over time.** I decided to showcase it this way as it is more representative of the data I will use in the regressions I will use later.
 
@@ -831,72 +836,387 @@ ggplot(dat_all_final, aes(y = tour_pct)) +
   coord_flip()
 ```
 
-```{r, Plot Combining Both Tourism and LGBTQ friendliness}
-#| echo: false
-#| include: false
-
-
-ggplot(dat_all_final, 
-       aes(x = as.factor(`Total`), 
-           y = tour_pct)) + 
-  geom_boxplot() + 
-  labs(x = "Total change in LGBTQ+ scores", 
-       y = "Change in Tourism Arrivals by Volume", 
-       title = "Does changes in LGBTQ friendliness impact tourism volume? No.",
-       caption = "Considering the impact of a change in LGBTQ+ scores, I find that there is no effect 
-       or relationship on the percent change in tourism. For example, countries that experiences no 
-       chnage in LGTBQ+ friendliness on average experienced the same tourism effect as gained 1 or even 
-       2 points to their LGBTQ+ score in the last year") + 
-  theme_minimal()
-```
-
 #### **Main Regression Model:**
 
 $$
 Percent\ Change\ Tourism\ Volume_i = \alpha + \beta_1( Change\ in\ LGBTQ\ Friendliness\ Variables)_{i1} + \epsilon_i
 $$
 
-This regression accuratelt
+This regression accurately asses my hypothesis, as I would suspect an increase in LGBTQ friendliness from one year to the next would result in an increase in tourism volume in that same year.
 
 **Discussions of Covariates**
 
 While in the above model, I do not use any potential covariates, the way I cleaned and prepared the data already takes into account one of the biggest potential covariates: size of country's tourist volume. For example, common travel locations, such as Greece, are going to generally just have more travel, even against some similar sized or population sized countries. So its not as much controlling against just the population size, but by using percent change in tourist volume as the outcome, this adjusts for the normal level of travel to a given country more or less applying country fixed effects.
 
-**Causal Relationship & Potential Unobserved Cofounders**
+#### **Causal Relationship & Potential Unobserved Cofounders & Limitations** 
 
-A significant challenge to the interpretabitiy of this model is the presence of unobserved confounders that could influence both LGBTQ+ policies and tourism volume, such as broader, economic conditions, political stability, or even year.\
+A significant challenge to the interpretation of this model is the presence of unobserved confounders that could influence both LGBTQ+ policies and tourism volume, such as broader political stability. \
 \
 For example, lets take a deeper look into political stability—often times political instability results in the claw back of demographic rights. Its entirely possible that far-right or other massive shifts in a countries government are both the cause of changes to LGBTQ friendliness and changes to the tourist volume.
 
-Take another example, year, its possible that the year it is has an effect on LGBTQ friendliness score and then also year has an impact on tourism—for example, its possible that tourism for whatever reason just declined in 2013.
+Additionally, a limitation to the model is that perhaps total score is not an effective at measuirng the LGBT factors that matter to tourists. For example, one could argue that adoption rights do not matter to tourists while local hostility and pride celebrations matter more. Adoption rights would likely effect those living in the country but not short term tourists, while some of the specific lgbt variables matter more. As another empirical extension, I will make a new index variable that covers only the LGBT independent variables that I think could matter to tourism. By doing this, it would allow us to have additonal certainty on the outcome, because this is not only test another permutation, but this test aligns closer to the intent of the hypothesis, in that it represents the factors that matter to tourists.
 
-Another potential mechanism for influence not captured in the data is media coverage and awareness this hypothesis only works under the assumption that potential tourists are aware of the status of LGBTQ friendliness in a given country.
+Another potential issue with the current model is that it assumes that people are able to quickly adjust their travel plans after changes in LGBTQ+ friendliness. It also assumes that people have access to reliable and prompt information covering the change in LGBT friendliness. It could be argued that this turnaround time is simply unrealistic—for example, if people have their travel plans already booked (often times months, if not over a year in advance) and then a country regresses in LGBT friendliness, that they would not or could not change their existing plans, but may not consider that country in the future. This leads to one of the empirical extensions mentioned earlier: employing lagged effects.
 
-## Task 4: Empirical Extension
+#### **Empirical Extensions** 
 
-*I'm not 100% percent sure what exactly I want to use as the empirical extension (or multiple of them), so I just wanted to give you a few options and then I also booked time for us to chat on Friday to workshop it together.*
+There are three extensions that I will employ that can help focus the model and interpret ability.
 
-There are a variety of ways to help strengthen our conclusion, even if it is that there is no relationship between these variables. Below are some things that I could empoy, considering that my main model is listed above.
+1.  **New Index Variable:** Add an additional index variable that instead of just total score, which is the sum of all the LGBT variables. By creating a new index I could test to see if the variables I suspect would be most important to tourist matters. In this new index I would include are: *Anti-Gay Laws, Homosexuality illegal, Pride Banned, Locals Hostile, Prosecution, Murders, Death Penalty, HIV Travel Restrictions.* Here's why I suspect these factors to matter
 
-1.  **New Index Variables:** Add an additional mode that instead of just total score as the independent variable, use all the sub components of the total. By doing this I could isolate to see if there is something specific that matters and not necessarily just the total score. In this I could also try many different combinations, where I hypothesize that these are the subcomponents that I think will have an impact on tourism and then use those or even create an index variable for it and then control it against the factors that I don't think matter.
+    -   **Anti-Gay Laws, Homosexuality illegal, Death Penalty, Prosecution**: Tourists will want to ensure their safety and legal protection while traveling. Countries where homosexuality is criminalized or has specific anti-gay laws pose a higher risk for LGBT travelers and also represent a culture that could be of concerns to tourists that aren't LGBT.
 
-2.  **Year Fixed Effects:** While my main model is already employing an effect simiar to fixed effects by doing country percent change, I could employ fixed effects for the year. For example, what if global tourism just declined in 2018? This then could help absorb some of those shocks. Not only could this help remove the effect of year, it also (partially) helps mediate concerns about global macroeconomic conditions that would impede or support increased tourism.
+    -   **Pride Banned**: The presence or absence of Pride celebrations can be an indicator of how open and accepting a country is towards the LGBT community, which affects the comfort and experience of tourists. Further, its often that LGBT travelers will travel for these pride celebrations.
 
-3.  **Country Fixed Effects:** Implement country fixed effects in my regression models to control for all time-invariant unobserved heterogeneity between countries, which might influence both LGBTQ+ rights and tourism. This is also partially accounted for by %change but there could be other factors (for ex maybe this shows me that only particular regions is there an actual relationsip)
+    -   **Locals Hostile**: The attitude of local populations towards LGBT individuals can significantly impact a tourist's experience, affecting everything from day-to-day interactions to their overall safety.
 
-4.  **Simplifying the model:** I could try to run a mode that predicts a just the direction of tourism change. Instead of having it be a continous variable I could make it just an binary variable that represents whether or not the country experienced an increase or a decrease in tourism.
+    -   **Murders**: The potential for non-state violence based on sexual orientation or gender identity is a critical concern that can deter LGBT tourists from visiting certain destinations. This also could be a concern to non-LGBT tourists as a cultural indicator of a destination.
 
-5.  **Regional Analysis**: Conduct separate analyses for different regions (e.g., Europe, Asia, Africa) to account for regional variations in cultural, economic, and political factors that could influence both LGBTQ+ rights and tourism independently.
+    -   **HIV Travel Restrictions**: Travelers with HIV (disproportionately effecting the LGBT community) would simply not be able to enter countries with restrictions and thus effect tourism volume.
 
-6.  **Economic Controls**: Include GDP per capita and economic growth rates in your model to control for the overall economic environment of the country, which could independently affect tourism volumes.
+2.  **Time-Lagged Variables**: I could use lagged values (1 year prior) of the LGBTQ+ friendliness measures to examine if changes in LGBTQ+ policies impact tourism with a time delay, which would help clarify direction (not that I am particularly concerned about tourism rates impacting LGBTQ+ friendliness) and also assuage some of the concerns mentioned earlier.
 
-7.  **Time-Lagged Variables**: I could use lagged values (1-2 years) of the LGBTQ+ friendliness measures to examine if changes in LGBTQ+ policies impact tourism with a time delay, which would help clarify direction (not that I am particularly concerned about tourism rates impacting LGBTQ+ friendliness)
+3.  **Regional Analysis**: Its possible that this trend holds only for certain regions. I'll conduct an additional analysis that looks at an interaction term of region and the independent variable of the main model to account for regional variations in cultural, economic, and political factors that could influence both LGBTQ+ rights and tourism independently.
 
-8.  **Difference-in-Differences**: I could empoy a difference-in-differences approach where I compare changes in tourism volumes in countries that improved on LGBTQ+ legislation against those that did not over the same period. The only issue is then I would have to pick a specific year and then that would reduce the models range. However this could help cover countries that were already improving/not improving at a steady rate.
+*Note that while these empircal extensions theoretically could be stacked together, and there would be many individual permutations (ex: new index and time lagged, but not region specific; old index, time lagged, and region specific). For the extent of this project, I will employ each of the empirical extensions indepdently and then also do one extension that stacks all three of the extension (new index + time lag + region) and then also one that stacks only new index and time lag.*
 
-## Task 5: Clean-up
+## Findings 
 
-*Done, but need help pushing to website, I've made the .bib (see attached), but it wont connect. Will work with you on Fri to troubleshoot.*
+Now that I have discussed the theory and hypothesis as well as the research design, I will now cover the findings from the main regression model.
 
-**A note on AI**\
-*I used GPT4 many times throughout this assignment. Noteably in helping me code in time saving measures (instead of calculating the percent change by hand for 12+ variables and over 9 times each) I got it to give me the code to do it automatically. Moreover, especially with the chaos that is pivoting I used it to help me ID rows using str type commands. I also used GPT4 to help with editing, debugging, trying to use python instead (did not go with in the end), as well as some editing/rephrasing and reworking of my explanations and responses. Moreover, I used it to help brainstorm some potential confounders (was okay at doing it) and then also used it to help brainstorm remedies (was meh at it).*
+Before diving into the regression model, I created a visualization to see if I notied any correlation:
+
+```{r}
+#| echo: false
+#| warning: false 
+
+
+#so drop the NA col in plot
+
+plot_of_both <- dat_all_final %>% 
+  filter(!is.na(Total))
+
+ggplot(plot_of_both, 
+       aes(x = as.factor(`Total`), 
+           y = tour_pct)) + 
+  geom_boxplot() + 
+  labs(x = "Total change in LGBT scores", 
+       y = "Change in Tourism Arrivals by Volume", 
+       title = "Does changes in LGBT friendliness impact tourism volume? Unlikely.",
+       caption = "Considering the impact of a change in LGBTQ+ scores, it looks like there is no effect or 
+       relationship on the percent change in tourism. For example, countries that experiences no 
+       change in LGBT friendliness on average experienced the same tourism effect as gained 1 or 
+       even 2 points to their LGBT score in the last year") + 
+  theme_minimal() + 
+  scale_y_continuous(limits = c(-50, 100))
+```
+
+It looks like there is no correlation here between the total change in LGBT score and the percent change in tourism arrivals. This would suggest that we reject my orginal hypothesis. However, let's also run a regression in the case that this visualization just does not convey the nuance or the effect is just small:
+
+```{r}
+#| echo: false 
+
+#now run the main regression and create the first model summary 
+model1 <- lm(tour_pct ~ Total, 
+             data = dat_all_final)
+
+#summary (model1) p is .77
+modelsummary(model1,
+             stars = TRUE,  
+             title = "Total Score's Effect on Tourism", 
+             gof_omit = "IC|Log-Likelihood|F|Deviance")
+```
+
+\
+In analyzing the results of the regression model where tourism percent change is regressed on the Total score of LGBT friendliness, the estimated coefficient for the LGBT total score is -0.1693. This suggests that for each point increase in the LGBT friendliness score, the tourism percent change decreases by 0.1693 percentage points, this is the opposite of the hypothesized effect. In terms of magnitude, this effect appears quite small.
+
+The model's coefficients reveal that the effect of changes in LGBT scores on tourism volume is **not statistically significant,** as indicated by the p-value of 0.728 for the Total LGBT score coefficient. This implies that changes in LGBT friendliness (as measured by Total) are not be a reliable predictor of changes in tourism volume.
+
+The lack of statistical significance, despite the theoretically reasonable expectation that increased LGBT friendliness could attract more tourists, might be attributable to insufficient statistical power. The dataset could have underlying variability that masks any potential effects, or the existing data points may not provide enough evidence to conclusively determine the impact of LGBT friendliness on tourism volumes. Beyond the high p-value, the very low R-squared values (.0001) suggest that the model explains a negligible portion of the variability in tourism changes, which may indicate that other unmodeled factors, such as the the potential unobserved cofounders mentioned earlier, are playing significant roles, or that the model is not specified in a way that captures the complexities of the relationship between LGBT rights and tourism effectively.
+
+**In sum, at least measured by these variables, there is no statistically significant relationship between the change in total LGBT friendliness and change in tourism volume.**
+
+## Empircal Extension Findings
+
+While I did not find a statistically significant relationship in my model, its possible that there is a different case with the empirical extensions being considered. Below is the readout of all the models. First is the original model which is the exact same as the one previously discussed. Second is the model that includes a new index variable instead of the original variable which the prior model includes. Third is the model that includes the original index but adds a time lag (1 year) between the index and the tourism percent change. The fourth model, includes the new index variable and adds a time lag between the index and the tourism percent change. The fifth model incorporates the old index from the first model and and the region interaction term. The final model stacks all three extensions and represents the new index variable and region interaction with a time lag.
+
+```{r}
+#| include: false 
+#start w model 2 the new index 
+
+new_index_dat <- dat_all_final %>%
+  #drop NA's which would be done anyway by reg, also if it has NA for one it does for all so not worries about removing too much data 
+  filter(!is.na(`Anti-gay laws`), !is.na(`Homosexuality illegal`), !is.na(`Pride banned`), 
+         !is.na(`Death sentences`), !is.na(Prosecution), !is.na(`Locals hostile`), 
+         !is.na(Murders), !is.na(`HIV-travel restrictions`)) %>%
+  mutate(`Important Factors Index` = `Anti-gay laws` + 
+                                        `Homosexuality illegal` +
+                                        `Pride banned` + 
+                                        `Death sentences` + 
+                                        Prosecution + 
+                                        `Locals hostile` + 
+                                        Murders + 
+                                        `HIV-travel restrictions`)
+
+model2 <- lm(tour_pct ~ `Important Factors Index`, 
+             data = new_index_dat)
+
+summary(model2)
+```
+
+```{r}
+#| include: false
+
+#now make model 3 which is time lagged 
+
+time_lagged_dat <- dat_all_final %>% 
+  select(Country, Total, Year, tour_pct) %>% 
+  filter(!is.na(Total)) %>% 
+  arrange(Country, Year) %>%
+  group_by(Country) %>%
+  mutate(lagged_tour_pct = lead(tour_pct, 1)) %>%
+  ungroup()
+
+model3 <- lm(lagged_tour_pct ~ Total,
+             data = time_lagged_dat)
+
+summary(model3) #wow p-val is quite low! 
+```
+
+```{r}
+#| include: false
+new_index_dat_time_lag <- new_index_dat %>%
+  filter(!is.na(Total)) %>% 
+  arrange(Country, Year) %>%
+  group_by(Country) %>%
+  mutate(lagged_tour_pct = lead(tour_pct, 1)) %>%
+  ungroup() %>% 
+  filter(!is.na(lagged_tour_pct))
+
+model3a <- lm(lagged_tour_pct ~ `Important Factors Index`,
+             data = new_index_dat_time_lag)
+
+summary(model3a)
+
+```
+
+```{r}
+#| include: false
+
+#just for curiosity, lets see a cor plot
+
+selected_vars <- new_index_dat_time_lag[, c('HIV-travel restrictions', 'Pride banned', 'Murders', 
+                                            'Prosecution', 'Anti-gay laws', 'Homosexuality illegal', 
+                                            'Locals hostile', 'Death sentences', 'lagged_tour_pct')]
+
+# Compute the correlation matrix
+cor_matrix <- round(cor(selected_vars, use = "complete.obs"), 2)
+
+cor_matrix
+```
+
+```{r}
+#| include: false
+
+
+#model 4, region analysis. 
+#first get unqique contries so I can sort 
+#unique(dat_all_final$Country)
+
+regions_dat_final <- dat_all_final %>%
+  mutate(Region = case_when(
+       Country %in% c("ANTIGUA & BARBUDA", "PUERTO RICO", "ARGENTINA", "BARBADOS", "BELIZE", "BOLIVIA", "BRAZIL", "CANADA", 
+                   "CHILE", "COLOMBIA", "COSTA RICA", "CUBA", "DOMINICA", "DOMINICAN REPUBLIC", "ECUADOR",
+                   "EL SALVADOR", "GRENADA", "GUATEMALA", "GUYANA", "HAITI", "HONDURAS", "JAMAICA", "MEXICO",
+                   "NICARAGUA", "PANAMA", "PARAGUAY", "PERU", "SAINT KITTS & NEVIS", "SAINT VINCENT & THE GRENADINES",
+                   "SURINAME", "TRINIDAD & TOBAGO", "UNITED STATES", "URUGUAY", "VENEZUELA", "ARUBA", "BAHAMAS", "BERMUDA", "BRITISH VIRGIN ISLANDS", "CURACAO", "USA", "DOMINICAN REPUBLIC") ~ "Americas & Caribbean",
+
+    Country %in% c("AUSTRALIA", "CAMBODIA", "CHINA", "FIJI", "INDONESIA", "KIRIBATI", "KOREA SOUTH", "JAPAN",
+                   "LAOS", "MALAYSIA", "MARSHALL ISLANDS", "MONGOLIA", "MYANMAR", "NEW ZEALAND", "PALAU",
+                   "PAPUA NEW GUINEA", "PHILIPPINES", "SAMOA", "SINGAPORE", "SOLOMON ISLANDS", "THAILAND",
+                   "TIMOR-LESTE", "TONGA", "VANUATU", "VIETNAM", "BRUNEI", "MACAO") ~ "East Asia & Pacific",
+
+    Country %in% c("ALBANIA", "ARMENIA", "AZERBAIJAN", "BELARUS", "BOSNIA-HERZEGOVINA", "BULGARIA", "CROATIA",
+                   "CYPRUS", "CZECH REPUBLIC", "ESTONIA", "GEORGIA", "HUNGARY", "KAZAKHSTAN", "KYRGYZSTAN",
+                   "LATVIA", "LITHUANIA", "MOLDOVA", "POLAND", "ROMANIA", "RUSSIA", "SERBIA", "SLOVAKIA",
+                   "SLOVENIA", "TAJIKISTAN", "TURKEY", "TURKMENISTAN", "UKRAINE", "UZBEKISTAN", "AUSTRIA", "MACEDONIA") ~ "Eastern Europe and Central Asia",
+
+    Country %in% c("ALGERIA", "BAHRAIN", "DJIBOUTI", "EGYPT", "IRAN", "IRAQ", "ISRAEL", "JORDAN", "KUWAIT",
+                   "LEBANON", "LIBYA", "MALTA", "MOROCCO", "OMAN", "QATAR", "SAUDI ARABIA", "SYRIA", "TUNISIA",
+                   "UNITED ARAB EMIRATES", "YEMEN") ~ "Middle East and North Africa",
+
+    Country %in% c("AFGHANISTAN", "BANGLADESH", "BHUTAN", "INDIA", "MALDIVES", "NEPAL", "PAKISTAN", "SRI LANKA") ~ "South Asia",
+
+    Country %in% c("ANGOLA", "BENIN", "BOTSWANA", "BURKINA FASO", "BURUNDI", "CAMEROON", "CAPE VERDE",
+                   "CENTRAL AFRICAN REP.", "CHAD", "COMOROS", "DEMOCRATIC REPUBLIC OF CONGO", "REPUBLIC OF CONGO",
+                   "CÔTE D'IVOIRE", "EQUATORIAL GUINEA", "ERITREA", "ETHIOPIA", "GABON", "THE GAMBIA", "GHANA",
+                   "GUINEA", "GUINEA-BISSAU", "KENYA", "LESOTHO", "LIBERIA", "MADAGASCAR", "MALAWI", "MAURITANIA",
+                   "MAURITIUS", "MOZAMBIQUE", "NAMIBIA", "NIGER", "NIGERIA", "RWANDA", "SÃO TOMÉ AND PRÍNCIPE", "SENEGAL",
+                   "SEYCHELLES", "SIERRA LEONE", "SOMALIA", "SOUTH AFRICA", "SUDAN", "SWAZILAND", "TANZANIA", "TOGO","MALI", "REP. OF THE CONGO", 
+                   "UGANDA", "ZAMBIA", "ZIMBABWE", "CABO VERDE", "	
+COMOROS ISLANDS", "DEM. REP. OF CONGO", "GAMBIA", "IVORY COAST", "COMOROS ISLANDS") ~ "Sub-Saharan Africa",
+
+    Country %in% c("ALBANIA", "BELGIUM", "DENMARK", "FINLAND", "FRANCE", "GERMANY", "GREECE", "ICELAND", "ITALY",
+                   "IRELAND", "LUXEMBOURG", "NETHERLANDS", "NORWAY", "PORTUGAL", "SPAIN", "SWEDEN", "SWITZERLAND", "SAN MARINO", 
+                   "UNITED KINGDOM", "ANDORRA", "LIECHTENSTEIN", "MONACO", "MONTENEGRO") ~ "Western Europe",
+
+    TRUE ~ "Unknown"
+    )) 
+
+regions_dat_final$Region <- as.factor(regions_dat_final$Region)
+
+model4 <- lm(tour_pct ~ Total*Region, 
+             data = regions_dat_final)
+
+summary(model4)
+
+```
+
+```{r}
+#| include: false
+
+#model 5 stack all 
+
+new_index_time_lag_region_dat <- new_index_dat_time_lag %>% 
+   mutate(Region = case_when(
+       Country %in% c("ANTIGUA & BARBUDA", "PUERTO RICO", "ARGENTINA", "BARBADOS", "BELIZE", "BOLIVIA", "BRAZIL", "CANADA", 
+                   "CHILE", "COLOMBIA", "COSTA RICA", "CUBA", "DOMINICA", "DOMINICAN REPUBLIC", "ECUADOR",
+                   "EL SALVADOR", "GRENADA", "GUATEMALA", "GUYANA", "HAITI", "HONDURAS", "JAMAICA", "MEXICO",
+                   "NICARAGUA", "PANAMA", "PARAGUAY", "PERU", "SAINT KITTS & NEVIS", "SAINT VINCENT & THE GRENADINES",
+                   "SURINAME", "TRINIDAD & TOBAGO", "UNITED STATES", "URUGUAY", "VENEZUELA", "ARUBA", "BAHAMAS", "BERMUDA", "BRITISH VIRGIN ISLANDS", "CURACAO", "USA", "DOMINICAN REPUBLIC") ~ "Americas & Caribbean",
+
+    Country %in% c("AUSTRALIA", "CAMBODIA", "CHINA", "FIJI", "INDONESIA", "KIRIBATI", "KOREA SOUTH", "JAPAN",
+                   "LAOS", "MALAYSIA", "MARSHALL ISLANDS", "MONGOLIA", "MYANMAR", "NEW ZEALAND", "PALAU",
+                   "PAPUA NEW GUINEA", "PHILIPPINES", "SAMOA", "SINGAPORE", "SOLOMON ISLANDS", "THAILAND",
+                   "TIMOR-LESTE", "TONGA", "VANUATU", "VIETNAM", "BRUNEI", "MACAO") ~ "East Asia & Pacific",
+
+    Country %in% c("ALBANIA", "ARMENIA", "AZERBAIJAN", "BELARUS", "BOSNIA-HERZEGOVINA", "BULGARIA", "CROATIA",
+                   "CYPRUS", "CZECH REPUBLIC", "ESTONIA", "GEORGIA", "HUNGARY", "KAZAKHSTAN", "KYRGYZSTAN",
+                   "LATVIA", "LITHUANIA", "MOLDOVA", "POLAND", "ROMANIA", "RUSSIA", "SERBIA", "SLOVAKIA",
+                   "SLOVENIA", "TAJIKISTAN", "TURKEY", "TURKMENISTAN", "UKRAINE", "UZBEKISTAN", "AUSTRIA", "MACEDONIA") ~ "Eastern Europe and Central Asia",
+
+    Country %in% c("ALGERIA", "BAHRAIN", "DJIBOUTI", "EGYPT", "IRAN", "IRAQ", "ISRAEL", "JORDAN", "KUWAIT",
+                   "LEBANON", "LIBYA", "MALTA", "MOROCCO", "OMAN", "QATAR", "SAUDI ARABIA", "SYRIA", "TUNISIA",
+                   "UNITED ARAB EMIRATES", "YEMEN") ~ "Middle East and North Africa",
+
+    Country %in% c("AFGHANISTAN", "BANGLADESH", "BHUTAN", "INDIA", "MALDIVES", "NEPAL", "PAKISTAN", "SRI LANKA") ~ "South Asia",
+
+    Country %in% c("ANGOLA", "BENIN", "BOTSWANA", "BURKINA FASO", "BURUNDI", "CAMEROON", "CAPE VERDE",
+                   "CENTRAL AFRICAN REP.", "CHAD", "COMOROS", "DEMOCRATIC REPUBLIC OF CONGO", "REPUBLIC OF CONGO",
+                   "CÔTE D'IVOIRE", "EQUATORIAL GUINEA", "ERITREA", "ETHIOPIA", "GABON", "THE GAMBIA", "GHANA",
+                   "GUINEA", "GUINEA-BISSAU", "KENYA", "LESOTHO", "LIBERIA", "MADAGASCAR", "MALAWI", "MAURITANIA",
+                   "MAURITIUS", "MOZAMBIQUE", "NAMIBIA", "NIGER", "NIGERIA", "RWANDA", "SÃO TOMÉ AND PRÍNCIPE", "SENEGAL",
+                   "SEYCHELLES", "SIERRA LEONE", "SOMALIA", "SOUTH AFRICA", "SUDAN", "SWAZILAND", "TANZANIA", "TOGO","MALI", "REP. OF THE CONGO", 
+                   "UGANDA", "ZAMBIA", "ZIMBABWE", "CABO VERDE", "	
+COMOROS ISLANDS", "DEM. REP. OF CONGO", "GAMBIA", "IVORY COAST", "COMOROS ISLANDS") ~ "Sub-Saharan Africa",
+
+    Country %in% c("ALBANIA", "BELGIUM", "DENMARK", "FINLAND", "FRANCE", "GERMANY", "GREECE", "ICELAND", "ITALY",
+                   "IRELAND", "LUXEMBOURG", "NETHERLANDS", "NORWAY", "PORTUGAL", "SPAIN", "SWEDEN", "SWITZERLAND", "SAN MARINO", 
+                   "UNITED KINGDOM", "ANDORRA", "LIECHTENSTEIN", "MONACO", "MONTENEGRO") ~ "Western Europe",
+
+    TRUE ~ "Unknown"
+    )) 
+  
+new_index_time_lag_region_dat$Region <- as.factor(new_index_time_lag_region_dat$Region)
+
+model5 <- lm(tour_pct ~ `Important Factors Index`*Region, 
+             data = new_index_time_lag_region_dat)
+
+summary(model5)
+```
+
+```{r}
+#| echo: false 
+
+##make all the alternative models 
+  # #basic model 
+  # model1,
+  # #new index 
+  # model2,
+  # #time lagged 
+  # model3, 
+  # #time lag + new index 
+  # model3a, 
+  # #region analysis 
+  # model4, 
+  # #stacked all three emp. extensions
+  # model5)
+
+modelsummary(list("Orginal Model"=model1, 
+                  "New Index Variable Model"=model2, 
+                  "Time Lagged Model"=model3, 
+                  "New Index Variale & Time Lagged Model"=model3a, 
+                  "Original Model with Region Interaction Model"=model4, 
+                  "New Index Variable & Time Lagged & Region Interaction Model"=model5),
+             stars = TRUE,  
+             title = "Various Models", 
+             gof_omit = "IC|Log-Likelihood|F|Deviance")
+```
+
+#### **Interpretation** 
+
+**Model 2: New Index Variable Model**
+
+In this model, I found that as the new index factor increases by one unit, the change in percent of tourism is a decrease of 0.368% which is a stronger effect that the first model, suggesting that these variables are critical. Note also this is in the same direction of the model 1, also suggesting a rejection of my hypothesis. However, this is not a statistically significant, and suffers some of the same caveats and concerns laid out in the interpretation of model 1. This model speaks to the fact it is unlikely that there is a genuine relationship between the change in LGBT friendliness and the change in tourism volume.
+
+**Model 3: Time Lagged Model**
+
+In this model, I found that as the original Total LGBT score increases by one unit, the change in percent of tourism is a decrease of 0.752% which is a stronger effect than both of the new index variable and the original model, which may suggest that there is validity to the use of a time lag. Note also this is in the same direction of the model 1, also suggesting a rejection of my hypothesis. However, it does not reach the threshold for statistical significance and thus further reduces the likelihood between a geniune relationship between the change in LGBT friendliness and change in tourism volume.
+
+**Model 4: New Index Variable + Time Lagged Model**
+
+In this model, I came the closest to a statistically significant solution. I find that an increase in the new index variable by one unit, results in a decrease of tourism by 1.348% . However, the p-value at .06 is still greater than the .05 required for statistical significance. This model, unlike the prior few, indicate that there could be a genuine relationship given the closeness to statistical significance; however the direction is also negative, opposite of the hypothesis, making it strong evidence to reject the hypothesis.
+
+**Model 5: Original Index + Region Interaction Term Model**
+
+*Intercept Coefficient (-0.2083 for Total):* Represents the impact of the LGBTQ+ score change on tourism percent change in the baseline region, America's and the Caribbean. This coefficient suggests a slight decrease in tourism growth for each unit increase in the LGBTQ+ score; however, this effect is not statistically significant (p = 0.8165), indicating that within this region, the LGBTQ+ score changes do not significantly influence tourism changes.
+
+*Region-Specific Coefficients:* The coefficient for South Asia (+10.5666) indicates a substantial and statistically significant positive effect on tourism percent change, suggesting that South Asia experiences a significantly higher baseline level of tourism growth compared to the baseline region. This effect is prominent and independent of the LGBTQ+ score changes. Similarly, East Asia & Pacific and Eastern Europe and Central Asia also exhibit positive effects, albeit these are not related to the interaction with the LGBTQ+ score changes.
+
+*Interaction Terms (Total:RegionX):* These terms attempt to quantify the differential impact of the LGBTQ+ score changes across different regions compared to the baseline. For instance, the interaction term for RegionSouth Asia with Total is negative (-1.1588) but not statistically significant (p = 0.6099), implying that while the initial impact of the score changes in South Asia suggests a negative trend, it does not significantly differ from the baseline region's trend. Other regions also show no significant interactions, which might indicate either a lack of statistical power or the possibility that these interaction effects are overshadowed by other unmodeled factors.
+
+The regions exhibit different baseline levels of tourism growth, yet none of the interaction terms across regions show statistical significance. This consistency across various regions indicates that the idea that changes in LGBTQ+ scores influence tourism differently in different regions — does not hold under the current model settings.
+
+**Model 6: New Index Variable & Time Lagged & Region Interaction Model**
+
+*(Intercept) Coefficient (4.4046):* This represents the estimated change in tourism percentage for the baseline region (America's and Caribbean) when the Important Factors Index is zero.
+
+*Important Factors Index Coefficient (-0.5986):* This coefficient suggests that in the baseline region, an increase in the "Important Factors Index" is associated with a decrease in tourism percentage change. However, this effect is not statistically significant (p = 0.6573), indicating that the index alone does not predict tourism changes effectively in the America's and Caribbean region.
+
+*Region-Specific Coefficients:* Positive significant effects are observed for East Asia & Pacific, Eastern Europe, and Central Asia indicating these regions start with a higher baseline tourism change compared to the America's and Caribbean regions
+
+*Interaction Terms (Important Factors Index:RegionX):* These coefficients essentially show the effect of the relationship (new LGBT index variable on the tourism variable) in the specific region; however, none of the interaction terms are statistically significant, suggesting that the effect of the "Important Factors Index" does not vary significantly across different regions compared to the baseline.
+
+By doing regional specific analysis, it examines the potential moderating effects of regional characteristics on general trends observed globally. However, like model 5, this model further reduces support for the relationship between these two concepts as nothing was statistically significant.
+
+------------------------------------------------------------------------
+
+While ultimately I did not find the relationships that I wanted to, all of these 5 additional models provide support for the rejection of the hypothesis and the idea that there is a relationship between changes in LGBT friendliness and changes in country tourism. Not a single model permutation had a statsitically significant effect; however model 4 was close with a p-value of .06.
+
+```{r}
+#| echo: false
+#| warning: false
+
+##Make plot of model 4 
+
+model4_plot <- new_index_dat_time_lag %>% 
+  filter(!is.na(`Important Factors Index`))
+
+ggplot(model4_plot, 
+       aes(x = as.factor(`Important Factors Index`), 
+           y = tour_pct)) + 
+  geom_boxplot() + 
+  labs(x = "Total change in Important LGBT Factors", 
+       y = "Change in Tourism Arrivals by Volume", 
+       title = "Does changes in specific and important LGBT factors impact tourism volume?
+       Likely not.",
+       caption = "Considering the impact of a change in this new index variable, it looks like there is no effect or 
+       relationship on the percent change in tourism. So while the p-value is close to signifcant, visually, 
+       there does not appear to be a trend") + 
+  theme_minimal() + 
+  scale_y_continuous(limits = c(-50, 100))
+```
+
+## Discussion and Policy Implications 
+
+xx
