@@ -14,7 +14,7 @@ bibliography: /Users/zachkoung/Documents/GitHub/psci3200-final-koung/PSCI3200.bi
 #| output: false
 #| include: false 
 
-# A note on AI I used GPT4 many times throughout this assignment. Noteably in helping me code in time saving measures (instead of calculating the percent change by hand for 12+ variables and over 9 times each) I got it to give me the code to do it automatically. Moreover, especially with the chaos that is pivoting I used it to help me ID rows using str type commands. I also used GPT4 to help with editing, debugging, trying to use python instead (did not go with in the end), as well as some editing/rephrasing and reworking of my explanations and responses. Moreover, I used it to help brainstorm some potential confounders (was okay at doing it) and then also used it to help brainstorm remedies (was meh at it). I also used chat gpt to assign countries into regions using the specific naming I had so I wouldnt have to a lot more cleaning then I verified the regions to make sure it made sense. Also used it to draft the findings analysis (meh) and then spent time over it manually. 
+# A note on AI I used GPT4 many times throughout this assignment. Noteably in helping me code in time saving measures (instead of calculating the percent change by hand for 12+ variables and over 9 times each) I got it to give me the code to do it automatically. Moreover, especially with the chaos that is pivoting I used it to help me ID rows using str type commands. I also used GPT4 to help with editing, debugging, trying to use python instead (did not go with in the end), as well as some editing/rephrasing and reworking of my explanations and responses. Moreover, I used it to help brainstorm some potential confounders (was okay at doing it) and then also used it to help brainstorm remedies (was meh at it). I also used chat gpt to assign countries into regions using the specific naming I had so I wouldnt have to a lot more cleaning then I verified the regions to make sure it made sense. Also used it to draft the findings analysis (meh) and then spent time over it manually. Additioanlly, I had it help me write the concluding section by summing up the existing paper, i then went through and added individual other parts/reworked the order of some things but overall it was quite good at it. Also I used it substantially in the section on my hypothesis and theory, I gave it my going theory (the premesis) and then my hypothesis and the introduction whcih I wrote and I asked it to fill in the rest, and it did pretty good and just required minor edits! 
 
 #bibliography: ./Users/zachkoung/Documents/GitHub/psci3200-final-koung/PSCI3200.bib
 
@@ -594,6 +594,8 @@ reg3 <- lm(data = dat_all_final,
 summary(reg3)
 ```
 
+# **Beyond Borders: Exploring the Impact of LGBTQ+ Inclusivity on Global Tourism**
+
 ## Introduction 
 
 *Afghanistan. Algeria. Bangladesh. Brunei. Burundi. Cameroon. Chad. Comoros. Dominica. Egypt. Eritrea. Eswatini. Ethiopia. Gambia. Ghana. Grenada. Guinea. Guyana. Iran. Jamaica. Kenya. Kiribati. Kuwait. Lebanon. Liberia. Libya. Malawi. Malaysia. Maldives. Mauritania. Morocco. Myanmar. Namibia. Nigeria. Occupied Palestinian Territory (Gaza Strip). Oman. Pakistan. Papua New Guinea. Qatar. Saint Lucia. Saint Vincent and The Grenadines. Samoa. Saudi Arabia. Senegal. Sierra Leone. Solomon Islands. Somalia. South Sudan. Sri Lanka. Sudan. Syria. Tanzania. Togo. Tonga. Tunisia. Turkmenistan. Tuvalu. Uganda. United Arab Emirates. Uzbekistan. Yemen. Zambia. Zimbabwe.*
@@ -602,23 +604,31 @@ There are over 65 countries and territories that actively criminalize homosexual
 
 Exploring the intersection of LGBTQ+ rights and how the tourism industry makes clear compelling insights into how inclusivity can shape economic landscapes. This research project delves into whether a nation’s commitment to LGBTQ+ rights can enhance its appeal as a tourism destination, a concept that holds both economic promise and social significance. This research inquiry is particularly pertinent in light of recent shifts globally and aligns with the broader quest for social equity, epitomized by the United Nations’ Sustainable Development Goal to reduce inequalities @UNSDGs.
 
-Several studies have laid the groundwork for understanding this relationship. Monaco’s investigation into the travel preferences of Italian LGBT Millennials reveals how societal attitudes significantly influence destination choices @monaco2022lgbt. This study highlights the importance of 'push' and 'pull' factors in shaping travel decisions but stops short of linking these behaviors directly to economic outcomes and also focuses specifically on only one tourist demographic: Italian LGBT Millennials. Furthermore, research from the Williams Institute at UCLA @badgett2014relationship presents a macroeconomic view, demonstrating a positive correlation between LGBT inclusivity and economic performance in 39 countries. While these findings suggest that inclusive policies contribute to economic strength, they primarily focus on broad economic indicators rather than specific tourism metrics. The IGLTA Foundation provides valuable demographic and economic data about LGBTQ+ travelers, underscoring the economic potential of LGBTQ+ friendly tourism practices. The foundation recently released a report to understand how Florida's recent anti-LGBTQ measures effect its perception as an international tourist destination. They find that nearly half of global survey respondents view Florida as unwelcoming to LGBTQ+ individuals and that there is decreased interest in traveling to Florida among the respondents. While this research seeks to understand the relationship between tourism and LGBTQ+ measures, it focuses soley on one region and relies on survey data and not economic outcomes @IGLTA2023Report.
+Several studies have laid the groundwork for understanding this relationship. Monaco’s investigation into the travel preferences of Italian LGBT Millennials reveals how societal attitudes significantly influence destination choices @monaco2022lgbt. This study highlights the importance of 'push' and 'pull' factors in shaping travel decisions but stops short of linking these behaviors directly to economic outcomes and also focuses specifically on only one tourist demographic: Italian LGBT Millennials. Furthermore, research from the Williams Institute at UCLA @badgett2014relationship presents a macroeconomic view, demonstrating a positive correlation between LGBT inclusivity and economic performance in 39 countries. While these findings suggest that inclusive policies contribute to economic strength, they primarily focus on broad economic indicators rather than specific tourism metrics. The IGLTA Foundation provides valuable demographic and economic data about LGBTQ+ travelers, underscoring the economic potential of LGBTQ+ friendly tourism practices. The foundation recently released a report to understand how Florida's recent anti-LGBTQ measures effect its perception as an international tourist destination. They find that nearly half of global survey respondents view Florida as unwelcoming to LGBTQ+ individuals and that there is decreased interest in traveling to Florida among the respondents. While this research seeks to understand the relationship between tourism and LGBTQ+ measures, it focuses solely on one region and relies on survey data and not economic outcomes @IGLTA2023Report.
 
-Addressing these gaps, my research aims to directly correlate LGBTQ+ inclusivity, as measured by an index from the Spartacus Gay Travel Guide, with tangible tourism outcomes, specifically tourism volume. Further, I aim to focus on not just one country or region, but rather the enitre globe. By employing a quantitative angle, this study seeks to provide a more nuanced understanding of how rights and inclusivity translate into economic benefits for destinations. Through this approach, the research not only substantiates the economic arguments for greater inclusivity but also enhances our comprehension of its broader social ramifications.
+Addressing these gaps, my research aims to directly correlate LGBTQ+ inclusivity, as measured by an index from the Spartacus Gay Travel Guide @Spartacus2024, with tangible tourism outcomes, specifically tourism volume. Further, I aim to focus on not just one country or region, but rather the entire globe. By employing a quantitative angle, this study seeks to provide a more nuanced understanding of how rights and inclusivity translate into economic benefits for destinations. Through this approach, the research not only substantiates the economic arguments for greater inclusivity but also enhances our comprehension of its broader social ramifications.
 
 ## Theory and Hypothesis 
 
-xx
+The crux of this research is to scrutinize how the inclusivity of LGBT rights within a country influences its attractiveness as a tourism destination. This idea is anchored in the broader discourse on social equity and economic development, particularly reflecting the objectives outlined in the United Nations' Sustainable Development Goals to reduce inequalities. This study posits a direct, testable hypothesis: **an increase in LGBT friendliness in a country leads to an increase in its tourism volume.**
+
+This hypothesis emerges from a logical synthesis of observed trends and existing literature. Research has repeatedly highlighted that social inclusivity has an effect on economic performance. The Williams Institute (2014) research has demonstrated a positive correlation between LGBT inclusivity and broader economic metrics across multiple countries, @badgett2014relationship.
+
+The expectation that an enhancement in LGBT rights leads to an increase in tourism volume is rooted in several key assumptions. First, individuals actively decide where to travel based on a variety of considerations important to them. Further, one of those considerations, for some travelers, is their values, which could include human rights considerations. Thus, a country perceived as safe and welcoming to LGBT individuals is likely to attract more tourists, especially those from the LGBT community and allies. Put simply, a country that bans *homosexuality*, is unlikely to have travel from lots of *homosexuals* and their friends.
+
+Finally, this hypothesis aligns with the idea of 'voting with your wallet' in a more globalized world. As tourists increasingly seek destinations that reflect their values, countries with progressive LGBT rights not only stand to gain economically but also enhance their global image as inclusive and modern societies. This relationship between enhanced LGBT rights and increased tourism could serve as a pivotal finding for policymakers and business leaders looking to harness the economic potential of inclusive policies.
+
+By rigorously testing this hypothesis through quantitative analysis, this research aims to provide empirical substantiation to the theoretical link between LGBT inclusivity and tourism economics, offering a nuanced understanding of how progressive social policies translate into tangible economic benefits.
 
 ## Research Design 
 
-In this section, I will cover the research design of this project. First I will cover some background on the two data sources I am using, as well as discuss some limitations to the data and how I moved forward. Secondly, I will discuss each of the key variables I am using from these datasets, and how they tie into my hypothesis as well as include a few vizualtions to help contenxtualize the some of these variables. Then, I will specify and defend my main regression model to test the hypothesis. I'll also discuss some potential covariates, unobserved cofounders, and other casual concerns that could effect the interpretability of the model. In addition to the limitations of the model, I will offer three different empirical extensions that could help further test the model: a region \* idependent variable interaction term, adding a time lag of one year between the independent and dependent variables, and creating a new index measure.
+In this section, I will cover the research design of this project. First I will cover some background on the two data sources I am using, as well as discuss some limitations to the data and how I moved forward. Secondly, I will discuss each of the key variables I am using from these data sets, and how they tie into my hypothesis as well as include a few visualizations to help contextualize the some of these variables. Then, I will specify and defend my main regression model to test the hypothesis. I'll also discuss some potential covariates, unobserved cofounders, and other casual concerns that could effect the interpret-ability of the model. In addition to the limitations of the model, I will offer three different empirical extensions that could help further test the model: a region \* independent variable interaction term, adding a time lag of one year between the independent and dependent variables, and creating a new index measure.
 
 #### **Data Sources**
 
 In this research, I am employing two different data sources. In order to asses the dependent/outcome variable, tourism volume, I am utilizing the World Bank's International tourism, number of arrivals measures @world_bank_international_tourist_arrivals. The downloadable data set has data at the country and year level. For example, it has the number of tourist arrivals to the United States in 2014. Note that the data is not perfect, there is some missing data for specific countries and years.
 
-The second datset is the from the Spartacus Gay Travel Guide which publishes yearly reports on each country and variety of different metrics, from whether or not Pride festivals and parades are banned in a given country and year to whether there is HIV-related travel restrictions @Spartacus2024. There are some limitations to this guide, including limited information on the specific methodology employed. They cite a variety of legitamite sources to create the index, but additional clarity on specific point attributions and more detailed variable explanations could be helpful. Note also that some reports don't include every country and reports sometimes include country and occupied terrorities as seperate entities. In cleaning the data I did my best to keep as many observations as possible and modified the naming where relevant.
+The second data set is the from the Spartacus Gay Travel Guide which publishes yearly reports on each country and variety of different metrics, from whether or not Pride festivals and parades are banned in a given country and year to whether there is HIV-related travel restrictions @Spartacus2024. There are some limitations to this guide, including limited information on the specific methodology employed. They cite a variety of legitimate sources to create the index (including IGLA, Rainbow Europe, the UN, and more), but additional clarity on specific point attributions and more detailed variable explanations could be helpful. Note also that some reports don't include every country and reports sometimes include country and occupied territories as separate entities. In cleaning the data I did my best to keep as many observations as possible and modified the naming where relevant.
 
 Moreover, while the data was relatively complete, I did narrow down the years I would work with. I decided to not use any data starting from January 1, 2020, to remove the issue with COVID-related travel dilemmas. Because the Gay Travel Guide only begins in 2012, the final window is for 2012-2019 and for all countries that existed in both the Gay Travel Guide and the World Bank Travel Data.
 
@@ -632,13 +642,12 @@ Note that for all of the variables below I have modified them so that it represe
 
     -   Final unit of analysis is by country and year. Sample is not just countries but also territories (ex: US Virgin Islands), regions (ex: MENA), and other buckets such as income buckets (developing) which I discarded.
 
-[Independent Variables]{.underline}
+[Independent Variables\
+]{.underline}*Like tourism, these variables are also the point change (not percent) from one year to the next*
 
 -   **Total**
 
-    -   This represents the total score a country gets in a given year from the Gay Spartacus Travel Index. Each country was scored startingon a variety of different features (see other variables). Scores centered around 0 and countries can either earn points or loose points. The GSTI cites a variety of different sources including IGLA, Rainbow Europe, the UN, and more.
-
-    -   In order to get this into a workable format I had to get PDFs to EXCLs to CSVs and then spend a lot of time cleaning the data, pivoting, merging re-poviting, etc. See above code segements for more specifics, but I got the unit of analysis down to country year, such that the df looks like: Country, Year, Total, Specific LGBT variable 1, Specific LGBT variable 2, Specific LGBT variable ...n. Sample ranges specifically from year to year but generally includes UN-recognized countries.
+    -   This represents the total score a country gets in a given year from the Gay Spartacus Travel Index. Each country was scored starting on a variety of different features (see other variables). Scores centered around 0 and countries can either earn points or loose points.
 
 -   **Adoption allowed:** This is a pretty clear measure where its very simple to see whether or not adoption is allowed, and for the most part this functions as a binary variable.
 
@@ -660,7 +669,7 @@ Note that for all of the variables below I have modified them so that it represe
 
 -   **Locals Hostile:** Are locals hostile to LGB individuals, 0 (not), and -1 (yes), -2 (yes, greater extent)... so forth.
 
--   **Prosecution:** Can indivudals be prosecuted for being LGB, 0 (not) and negative values for increasing severity.
+-   **Prosecution:** Can individuals be prosecuted for being LGB, 0 (not) and negative values for increasing severity.
 
 -   **Murders:** are there murders motivated on sexual orientation or gender identity in the country, binary 0 (none) and -2 (some).
 
@@ -670,7 +679,7 @@ Note that for all of the variables below I have modified them so that it represe
 
 **Why are these variables important in helping asses the hypothesis?**
 
-These variables and data sources are the most ideal at assesing my hypothesis. The dependent variable, tourism, is accurately measured by the number of arrivals. I chose this over other variables such as dollars spent per visit, avergae length of visit, size of the tourist economy, or others that did not directly asses the movement of people. Because I hypothesize that people change their tourism plans as a result of LGBT friendliness, using number of people as my unit of analysis is the most apt. Secondly, the independent variables, LGBT friendliness, are also apt at supporting my hypothesis. These variables, including the total score accruately measure LGBT conditions in a given country and connect neatly to my hypothesis.
+These variables and data sources are the most ideal at assessing my hypothesis. The dependent variable, tourism, is accurately measured by the number of arrivals. I chose this over other variables such as dollars spent per visit, average length of visit, size of the tourist economy, or others that did not directly asses the movement of people. Because I hypothesize that people change their tourism plans as a result of LGBT friendliness, using number of people as my unit of analysis is the most apt. Secondly, the independent variables, LGBT friendliness, are also apt at supporting my hypothesis. These variables, including the total score accurately measure LGBT conditions in a given country and connect neatly to my hypothesis.
 
 #### **Visualizations and Contextualization of Variables** 
 
@@ -730,7 +739,7 @@ gt_table <- gt(summary_stats_wide) %>%
 gt_table
 ```
 
-As it is evident, because this is looking at the statistics in the change of variables from one year to the next, it does not tell us much on the LGBT side of things, this is because most countries simply do not observe changes from one year to the next and such the mean and median tend to be 0. Given this, I think it could be valuable to just view a chart and graph of just the raw independent (LGBTQ) variables, not the modified variables (change from the prior year to the next). **These two visualizations** (table and boxplot) **just shows the distribution of the raw variables!**
+As it is evident, because this is looking at the statistics in the change of variables from one year to the next, it does not tell us much on the LGBT side of things, this is because most countries simply do not observe changes from one year to the next and such the mean and median tend to be 0. Given this, I think it could be valuable to just view a chart and graph of just the raw independent (LGBTQ) variables, not the modified variables (change from the prior year to the next). **These two visualizations** (table and box plot) **just shows the distribution of the raw variables!**
 
 ```{r}
 #| echo: false
@@ -804,18 +813,17 @@ long_data <- pivot_longer(all_yrs_gay,
 ggplot(long_data, aes(x = variable, y = value, fill = variable)) +
   geom_boxplot(show.legend = FALSE) +
   labs(title = "Visual Representation of LGBT+ Friendliness Variables",
-       x = "Variable",
-       y = "Value", 
+       x = "Variables",
+       y = "Raw Values (Not Change)", 
        caption = "Distribution of LGBT+ friendliness metrics across various countries from 2012 to 2019. Each 
        boxplot represents the interquartile range, median, and range of scores for specific variables 
        related to LGBT+ rights and policies. This visualization highlights the variability and general trends 
        in LGBT+ inclusiveness, with the total score being a summative score of the individual 
        components, it cleary demonstrates the most range. Note that  some of these variables are 
-       binary and not continous, and thus explains the narrow distribution. 
-       
-       Please see the variable descriptions for more information") +
-  #theme(axis_text_x = element_text(angle = 45, hjust = 1)) +
-  coord_flip()
+       binary and not continous, and thus explains the narrow distribution.")  +
+  coord_flip() + 
+  scale_y_continuous(breaks = seq(-16, max(long_data$value, na.rm = TRUE), by = 2)) +
+  ggthemes::theme_clean()
 ```
 
 But back on the tourism side, here is a visualization of the change in tourism volume from one year to the next.
@@ -831,9 +839,9 @@ ggplot(dat_all_final, aes(y = tour_pct)) +
        y = "Tourism Volume Percent Change",
        caption = "Distribution of the Percent Change in Tourism across various countries from 2012 and 2019. 
        On average, countries generally experienced a 5% increase in tourism.") +
-  theme_minimal() +
   scale_y_continuous(limits = c(-25, 25)) + 
-  coord_flip()
+  coord_flip() + 
+    ggthemes::theme_clean()
 ```
 
 #### **Main Regression Model:**
@@ -854,7 +862,7 @@ A significant challenge to the interpretation of this model is the presence of u
 \
 For example, lets take a deeper look into political stability—often times political instability results in the claw back of demographic rights. Its entirely possible that far-right or other massive shifts in a countries government are both the cause of changes to LGBTQ friendliness and changes to the tourist volume.
 
-Additionally, a limitation to the model is that perhaps total score is not an effective at measuirng the LGBT factors that matter to tourists. For example, one could argue that adoption rights do not matter to tourists while local hostility and pride celebrations matter more. Adoption rights would likely effect those living in the country but not short term tourists, while some of the specific lgbt variables matter more. As another empirical extension, I will make a new index variable that covers only the LGBT independent variables that I think could matter to tourism. By doing this, it would allow us to have additonal certainty on the outcome, because this is not only test another permutation, but this test aligns closer to the intent of the hypothesis, in that it represents the factors that matter to tourists.
+Additionally, a limitation to the model is that perhaps total score is not an effective at measuring the LGBT factors that matter to tourists. For example, one could argue that adoption rights do not matter to tourists while local hostility and pride celebrations matter more. Adoption rights would likely effect those living in the country but not short term tourists, while some of the specific lgbt variables matter more. As another empirical extension, I will make a new index variable that covers only the LGBT independent variables that I think could matter to tourism. By doing this, it would allow us to have additional certainty on the outcome, because this is not only test another permutation, but this test aligns closer to the intent of the hypothesis, in that it represents the factors that matter to tourists.
 
 Another potential issue with the current model is that it assumes that people are able to quickly adjust their travel plans after changes in LGBTQ+ friendliness. It also assumes that people have access to reliable and prompt information covering the change in LGBT friendliness. It could be argued that this turnaround time is simply unrealistic—for example, if people have their travel plans already booked (often times months, if not over a year in advance) and then a country regresses in LGBT friendliness, that they would not or could not change their existing plans, but may not consider that country in the future. This leads to one of the empirical extensions mentioned earlier: employing lagged effects.
 
@@ -878,13 +886,13 @@ There are three extensions that I will employ that can help focus the model and 
 
 3.  **Regional Analysis**: Its possible that this trend holds only for certain regions. I'll conduct an additional analysis that looks at an interaction term of region and the independent variable of the main model to account for regional variations in cultural, economic, and political factors that could influence both LGBTQ+ rights and tourism independently.
 
-*Note that while these empircal extensions theoretically could be stacked together, and there would be many individual permutations (ex: new index and time lagged, but not region specific; old index, time lagged, and region specific). For the extent of this project, I will employ each of the empirical extensions indepdently and then also do one extension that stacks all three of the extension (new index + time lag + region) and then also one that stacks only new index and time lag.*
+*Note that while these empirical extensions theoretically could be stacked together, and there would be many individual permutations (ex: new index and time lagged, but not region specific; old index, time lagged, and region specific). For the extent of this project, I will employ each of the empirical extensions independently and then also do one extension that stacks all three of the extension (new index + time lag + region) and then also one that stacks only new index and time lag.*
 
 ## Findings 
 
 Now that I have discussed the theory and hypothesis as well as the research design, I will now cover the findings from the main regression model.
 
-Before diving into the regression model, I created a visualization to see if I notied any correlation:
+Before diving into the regression model, I created a visualization to see if I noticed any correlation:
 
 ```{r}
 #| echo: false
@@ -902,16 +910,17 @@ ggplot(plot_of_both,
   geom_boxplot() + 
   labs(x = "Total change in LGBT scores", 
        y = "Change in Tourism Arrivals by Volume", 
-       title = "Does changes in LGBT friendliness impact tourism volume? Unlikely.",
+       title = "Does changes in LGBT friendliness impact tourism volume? 
+       Unlikely.",
        caption = "Considering the impact of a change in LGBTQ+ scores, it looks like there is no effect or 
        relationship on the percent change in tourism. For example, countries that experiences no 
        change in LGBT friendliness on average experienced the same tourism effect as gained 1 or 
        even 2 points to their LGBT score in the last year") + 
-  theme_minimal() + 
+  ggthemes::theme_clean() + 
   scale_y_continuous(limits = c(-50, 100))
 ```
 
-It looks like there is no correlation here between the total change in LGBT score and the percent change in tourism arrivals. This would suggest that we reject my orginal hypothesis. However, let's also run a regression in the case that this visualization just does not convey the nuance or the effect is just small:
+It looks like there is no correlation here between the total change in LGBT score and the percent change in tourism arrivals. This would suggest that we reject my original hypothesis. However, let's also run a regression in the case that this visualization just does not convey the nuance or the effect is just small:
 
 ```{r}
 #| echo: false 
@@ -923,7 +932,7 @@ model1 <- lm(tour_pct ~ Total,
 #summary (model1) p is .77
 modelsummary(model1,
              stars = TRUE,  
-             title = "Total Score's Effect on Tourism", 
+             title = "Total LGBT Score Change's Effect on Tourism", 
              gof_omit = "IC|Log-Likelihood|F|Deviance")
 ```
 
@@ -932,11 +941,11 @@ In analyzing the results of the regression model where tourism percent change is
 
 The model's coefficients reveal that the effect of changes in LGBT scores on tourism volume is **not statistically significant,** as indicated by the p-value of 0.728 for the Total LGBT score coefficient. This implies that changes in LGBT friendliness (as measured by Total) are not be a reliable predictor of changes in tourism volume.
 
-The lack of statistical significance, despite the theoretically reasonable expectation that increased LGBT friendliness could attract more tourists, might be attributable to insufficient statistical power. The dataset could have underlying variability that masks any potential effects, or the existing data points may not provide enough evidence to conclusively determine the impact of LGBT friendliness on tourism volumes. Beyond the high p-value, the very low R-squared values (.0001) suggest that the model explains a negligible portion of the variability in tourism changes, which may indicate that other unmodeled factors, such as the the potential unobserved cofounders mentioned earlier, are playing significant roles, or that the model is not specified in a way that captures the complexities of the relationship between LGBT rights and tourism effectively.
+The lack of statistical significance, despite the theoretically reasonable expectation that increased LGBT friendliness could attract more tourists, might be attributable to insufficient statistical power. The data set could have underlying variability that masks any potential effects, or the existing data points may not provide enough evidence to conclusively determine the impact of LGBT friendliness on tourism volumes. Beyond the high p-value, the very low R-squared values (.0001) suggest that the model explains a negligible portion of the variability in tourism changes, which may indicate that other unmodeled factors, such as the the potential unobserved cofounders mentioned earlier, are playing significant roles, or that the model is not specified in a way that captures the complexities of the relationship between LGBT rights and tourism effectively.
 
 **In sum, at least measured by these variables, there is no statistically significant relationship between the change in total LGBT friendliness and change in tourism volume.**
 
-## Empircal Extension Findings
+## Empirical Extension Findings
 
 While I did not find a statistically significant relationship in my model, its possible that there is a different case with the empirical extensions being considered. Below is the readout of all the models. First is the original model which is the exact same as the one previously discussed. Second is the model that includes a new index variable instead of the original variable which the prior model includes. Third is the model that includes the original index but adds a time lag (1 year) between the index and the tourism percent change. The fourth model, includes the new index variable and adds a time lag between the index and the tourism percent change. The fifth model incorporates the old index from the first model and and the region interaction term. The final model stacks all three extensions and represents the new index variable and region interaction with a time lag.
 
@@ -1149,7 +1158,7 @@ modelsummary(list("Orginal Model"=model1,
                   "Original Model with Region Interaction Model"=model4, 
                   "New Index Variable & Time Lagged & Region Interaction Model"=model5),
              stars = TRUE,  
-             title = "Various Models", 
+             title = "Various Regression Models Assesing LGBT Friendliness and Tourism Volume", 
              gof_omit = "IC|Log-Likelihood|F|Deviance")
 ```
 
@@ -1161,7 +1170,7 @@ In this model, I found that as the new index factor increases by one unit, the c
 
 **Model 3: Time Lagged Model**
 
-In this model, I found that as the original Total LGBT score increases by one unit, the change in percent of tourism is a decrease of 0.752% which is a stronger effect than both of the new index variable and the original model, which may suggest that there is validity to the use of a time lag. Note also this is in the same direction of the model 1, also suggesting a rejection of my hypothesis. However, it does not reach the threshold for statistical significance and thus further reduces the likelihood between a geniune relationship between the change in LGBT friendliness and change in tourism volume.
+In this model, I found that as the original Total LGBT score increases by one unit, the change in percent of tourism is a decrease of 0.752% which is a stronger effect than both of the new index variable and the original model, which may suggest that there is validity to the use of a time lag. Note also this is in the same direction of the model 1, also suggesting a rejection of my hypothesis. However, it does not reach the threshold for statistical significance and thus further reduces the likelihood between a genuine relationship between the change in LGBT friendliness and change in tourism volume.
 
 **Model 4: New Index Variable + Time Lagged Model**
 
@@ -1191,7 +1200,7 @@ By doing regional specific analysis, it examines the potential moderating effect
 
 ------------------------------------------------------------------------
 
-While ultimately I did not find the relationships that I wanted to, all of these 5 additional models provide support for the rejection of the hypothesis and the idea that there is a relationship between changes in LGBT friendliness and changes in country tourism. Not a single model permutation had a statsitically significant effect; however model 4 was close with a p-value of .06.
+While ultimately I did not find the relationships that I wanted to, all of these 5 additional models provide support for the rejection of the hypothesis and the idea that there is a relationship between changes in LGBT friendliness and changes in country tourism. Not a single model permutation had a statistically significant effect; however model 4 was close with a p-value of .06.
 
 ```{r}
 #| echo: false
@@ -1208,15 +1217,23 @@ ggplot(model4_plot,
   geom_boxplot() + 
   labs(x = "Total change in Important LGBT Factors", 
        y = "Change in Tourism Arrivals by Volume", 
-       title = "Does changes in specific and important LGBT factors impact tourism volume?
-       Likely not.",
+       title = "Does changes in specific and important LGBT factors impact 
+       tourism volume? Likely not.",
        caption = "Considering the impact of a change in this new index variable, it looks like there is no effect or 
        relationship on the percent change in tourism. So while the p-value is close to signifcant, visually, 
        there does not appear to be a trend") + 
-  theme_minimal() + 
+    ggthemes::theme_clean() + 
   scale_y_continuous(limits = c(-50, 100))
 ```
 
 ## Discussion and Policy Implications 
 
-xx
+My analysis revealed that changes in LGBT friendliness (at least, as measured by the Spartacus Gay Travel Guide's index) did not statistically significantly affect tourism volume. This was consistent across 6 different model variations, including those incorporating regional interactions and time-lagged variables. Again: none of the models demonstrated a statistically significant relationship that would support the hypothesis that increased LGBT rights and inclusivity boost tourism. However, no model proved a statistically significant relationship of increases LGBT friendliness decreasing tourist volume.
+
+These results suggest that while socially progressive policies towards LGBT communities are morally and ethically significant, they may not directly translate into increased tourism traffic as hypothesized. This could be due to several factors including but not limited to: tourists might prioritize other factors such as cost, climate, geographic proximity, and historical attractions over social policies when choosing destinations, the number of tourists that do prioritize social values is simply dwarfed by those who do not, or the current metrics used to quantify LGBT friendliness might not capture the aspects of inclusivity that potential tourists value most.
+
+Although the direct economic benefit of enhanced LGBT inclusivity in boosting tourism wasn't substantiated in this study, this does not diminish the value of inclusive LGBT policies. The moral and ethical drive for rights and equality remains clear, and such policies may still indirectly benefit economies as prior research has already pointed out. It's hard to support any other policy recommendations, given the lack of any statistical significance; however,
+
+To build on the findings of this research and address some of its limitations, several avenues for future research can be considered: including broader and other measures of economic impact, more qualitative or mixed method studies aimed at further understanding tourism choices, repeating this research in the years since 2020 as its possible LGBT-friendliness has become more salient overtime, using different sources of data to better capture LGBT-friendliness.
+
+In sum, while my research did not find evidence to support the hypothesis that increased LGBT inclusivity boosts (or harms) tourism, it underscores the need for continued research into the broader implications of LGBT friendliness on economic outcomes. The lack of a significant finding also highlights the importance of furthering LGBT rights for intrinsic reasons rather than just economic benefits.
