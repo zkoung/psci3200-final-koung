@@ -591,7 +591,7 @@ reg3 <- lm(data = dat_all_final,
 summary(reg3)
 ```
 
-## **Task 1: Introduction**
+## Introduction 
 
 *Afghanistan. Algeria. Bangladesh. Brunei. Burundi. Cameroon. Chad. Comoros. Dominica. Egypt. Eritrea. Eswatini. Ethiopia. Gambia. Ghana. Grenada. Guinea. Guyana. Iran. Jamaica. Kenya. Kiribati. Kuwait. Lebanon. Liberia. Libya. Malawi. Malaysia. Maldives. Mauritania. Morocco. Myanmar. Namibia. Nigeria. Occupied Palestinian Territory (Gaza Strip). Oman. Pakistan. Papua New Guinea. Qatar. Saint Lucia. Saint Vincent and The Grenadines. Samoa. Saudi Arabia. Senegal. Sierra Leone. Solomon Islands. Somalia. South Sudan. Sri Lanka. Sudan. Syria. Tanzania. Togo. Tonga. Tunisia. Turkmenistan. Tuvalu. Uganda. United Arab Emirates. Uzbekistan. Yemen. Zambia. Zimbabwe.*
 
@@ -603,17 +603,23 @@ Several studies have laid the groundwork for understanding this relationship. Mo
 
 Addressing these gaps, my research aims to directly correlate LGBTQ+ inclusivity, as measured by an index from the Spartacus Gay Travel Guide, with tangible tourism outcomes, specifically tourism volume. Further, I aim to focus on not just one country or region, but rather the enitre globe. By employing a quantitative angle, this study seeks to provide a more nuanced understanding of how rights and inclusivity translate into economic benefits for destinations. Through this approach, the research not only substantiates the economic arguments for greater inclusivity but also enhances our comprehension of its broader social ramifications.
 
-## Task 2: Data
+## Theory and Hypothesis 
 
-**Data Souces**
+xx
+
+## Research Design 
+
+In this section, I will cover the research design of this project. First I will cover some background on the two data sources I am using, as well as discuss some limitations to the data and how I moved forward. Secondly, I will discuss each of the key variables I am using from these datasets, and how they tie into my hypothesis as well as include a few vizualtions to help contenxtualize the some of these variables. Then, I will specify and defend my main regression model to test the hypothesis. I'll also discuss some potential covariates, unobserved cofounders, and other casual concerns that could effect the interpretability of the model. In addition to the limitations of the model, I will offer two different empirical extensions that could help further test the model: a region \* idependent variable interaction term and adding a time lag of one year between the independent and dependent variables.
+
+#### **Data Sources**
 
 In this research, I am employing two different data sources. In order to asses the dependent/outcome variable, tourism volume, I am utilizing the World Bank's International tourism, number of arrivals measures @world_bank_international_tourist_arrivals. The downloadable data set has data at the country and year level. For example, it has the number of tourist arrivals to the United States in 2014. Note that the data is not perfect, there is some missing data for specific countries and years.
 
-The second datset is the from the Spartacus Gay Travel Guide which pubishes yearly reports on each country and variety of different metrics, from whether or not Pride festivals and parades are banned in a given country and year to whether there is HIV-related travel restrictions.
+The second datset is the from the Spartacus Gay Travel Guide which publishes yearly reports on each country and variety of different metrics, from whether or not Pride festivals and parades are banned in a given country and year to whether there is HIV-related travel restrictions @Spartacus2024. There are some limitations to this guide, including limited information on the specific methodology employed. They cite a variety of legitamite sources to create the index, but additional clarity on specific point attributions and more detailed variable explanations could be helpful. Note also that some reports don't include every country and reports sometimes include country and occupied terrorities as seperate entities. In cleaning the data I did my best to keep as many observations as possible and modified the naming where relevant.
 
-While the data was relatively complete, I did narrow down the years I would work with. I decided to not use any data starting from Janurary 1, 2020, to remove the issue with COVID-related travel dilemmas. Because the Gay Travel Guide only begins in 2012, the final window is for 2012-2019 and for all countries that existed in both the Gay Travel Guide and the World Bank Travel Data.
+Moreover, while the data was relatively complete, I did narrow down the years I would work with. I decided to not use any data starting from January 1, 2020, to remove the issue with COVID-related travel dilemmas. Because the Gay Travel Guide only begins in 2012, the final window is for 2012-2019 and for all countries that existed in both the Gay Travel Guide and the World Bank Travel Data.
 
-**Discussion of key variables**
+#### **Discussion of key variables**
 
 [Dependent Variable]{.underline}
 
@@ -657,7 +663,13 @@ While the data was relatively complete, I did narrow down the years I would work
 
 -   **LGBT-Marketing:** Is there specific travel related marketing to LGBT individuals, binary variable 0 (none) or 1 (some).
 
-**Table covering the detials of the variables**
+**Why are these variables important in helping asses the hypothesis?**
+
+These variables and data sources are the most ideal at assesing my hypothesis. The dependent variable, tourism, is accurately measured by the number of arrivals. I chose this over other variables such as dollars spent per visit, avergae length of visit, size of the tourist economy, or others that did not directly asses the movement of people. Because I hypothesize that people change their tourism plans as a result of LGBT friendliness, using number of people as my unit of analysis is the most apt. Secondly, the independent variables, LGBT friendliness, are also apt at supporting my hypothesis. These variables, including the total score accruately measure LGBT conditions in a given country and connect neatly to my hypothesis.
+
+#### Visualizations and Contextualization of Variables 
+
+Because I am taking the difference in both my independent variables, LGBT measures, as well as my dependent variables, **below is a table showcasing some statistics on dependent variables after they have modified to show the change over time.** I decided to showcase it this way as it is more representative of the data I will use in the regressions I will use later.
 
 ```{r}
 #| echo: false
@@ -713,7 +725,7 @@ gt_table <- gt(summary_stats_wide) %>%
 gt_table
 ```
 
-As you can see, because this is looking at the statiscs in the chnage of variables from one year to the next, it does not tell us much on the LGBTQ side of things, this is because most countries simply do not observe changes from one year to the next and such the mean and median tend to be 0. Let me show you a chart and graph of just the LGBTQ variabels, raw score which should just show the distribution of the raw variables!
+As it is evident, because this is looking at the statistics in the change of variables from one year to the next, it does not tell us much on the LGBT side of things, this is because most countries simply do not observe changes from one year to the next and such the mean and median tend to be 0. Given this, I think it could be valuable to just view a chart and graph of just the raw independent (LGBTQ) variables, not the modified variables (change from the prior year to the next). **These two visualizations** (table and boxplot) **just shows the distribution of the raw variables!**
 
 ```{r}
 #| echo: false
@@ -753,7 +765,8 @@ summary_stats_wide_no_change <- pivot_longer(summary_stats_wide_round_no_change,
 
 # Create a gt table in a wide format
 gt_table <- gt(summary_stats_wide_no_change) %>%
-  tab_header(title = "Summary Statistics for LGBT Variables (Measuring Raw Score for all Years)") %>%
+  tab_header(title = "Summary Statistics for LGBT Variables 
+             (Measuring Raw Score for all Years)") %>%
   cols_label(
     variable = "Variable",
     min = "Min",
@@ -785,7 +798,7 @@ long_data <- pivot_longer(all_yrs_gay,
 # Boxplot for all other variables horizontally without showing outliers
 ggplot(long_data, aes(x = variable, y = value, fill = variable)) +
   geom_boxplot(show.legend = FALSE) +
-  labs(title = "Boxplot of LGBT+ Friendliness Variables",
+  labs(title = "Visual Representation of LGBT+ Friendliness Variables",
        x = "Variable",
        y = "Value", 
        caption = "Distribution of LGBT+ friendliness metrics across various countries from 2012 to 2019. Each 
@@ -800,9 +813,12 @@ ggplot(long_data, aes(x = variable, y = value, fill = variable)) +
   coord_flip()
 ```
 
-```{r}
+But back on the tourism side, here is a visualization of the change in tourism volume from one year to the next.
+
+```{r, Boxplot for tour_pct horizontally without showing outliers}
 #| echo: false
 #| warning: false
+
 # Boxplot for 'tour_pct' horizontally without showing outliers
 ggplot(dat_all_final, aes(y = tour_pct)) +
   geom_boxplot(outlier.shape = NA) +
@@ -815,10 +831,9 @@ ggplot(dat_all_final, aes(y = tour_pct)) +
   coord_flip()
 ```
 
-**Plot Combinding Both Tourism and LGBTQ friendliness**
-
-```{r}
+```{r, Plot Combining Both Tourism and LGBTQ friendliness}
 #| echo: false
+#| include: false
 
 
 ggplot(dat_all_final, 
@@ -835,17 +850,13 @@ ggplot(dat_all_final,
   theme_minimal()
 ```
 
-## Task 3: Research Design
-
-**Main Regression Model:**
+#### **Main Regression Model:**
 
 $$
 Percent\ Change\ Tourism\ Volume_i = \alpha + \beta_1( Change\ in\ LGBTQ\ Friendliness\ Variables)_{i1} + \epsilon_i
 $$
 
-**Hypothesis:**
-
-Do decreases in LGBTQ friendliness variables that hinder tourism in a given country result in a decrease in tourism volume to the country, as measured by percent change in the number of arrivals?
+This regression accuratelt
 
 **Discussions of Covariates**
 
