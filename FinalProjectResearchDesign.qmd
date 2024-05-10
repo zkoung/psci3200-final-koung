@@ -14,7 +14,13 @@ bibliography: /Users/zachkoung/Documents/GitHub/psci3200-final-koung/PSCI3200.bi
 #| output: false
 #| include: false 
 
+
+
+
 # A note on AI I used GPT4 many times throughout this assignment. Noteably in helping me code in time saving measures (instead of calculating the percent change by hand for 12+ variables and over 9 times each) I got it to give me the code to do it automatically. Moreover, especially with the chaos that is pivoting I used it to help me ID rows using str type commands. I also used GPT4 to help with editing, debugging, trying to use python instead (did not go with in the end), as well as some editing/rephrasing and reworking of my explanations and responses. Moreover, I used it to help brainstorm some potential confounders (was okay at doing it) and then also used it to help brainstorm remedies (was meh at it). I also used chat gpt to assign countries into regions using the specific naming I had so I wouldnt have to a lot more cleaning then I verified the regions to make sure it made sense. Also used it to draft the findings analysis (meh) and then spent time over it manually. Additioanlly, I had it help me write the concluding section by summing up the existing paper, i then went through and added individual other parts/reworked the order of some things but overall it was quite good at it. Also I used it substantially in the section on my hypothesis and theory, I gave it my going theory (the premesis) and then my hypothesis and the introduction whcih I wrote and I asked it to fill in the rest, and it did pretty good and just required minor edits! 
+
+
+
 
 #bibliography: ./Users/zachkoung/Documents/GitHub/psci3200-final-koung/PSCI3200.bib
 
